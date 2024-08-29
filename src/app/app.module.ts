@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { AppComponent } from './app.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 
 @NgModule({
@@ -26,7 +27,9 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
     MatFormFieldModule,
     MatDialogModule,
     MatSnackBarModule,
+    AppComponent,
   ],
   providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

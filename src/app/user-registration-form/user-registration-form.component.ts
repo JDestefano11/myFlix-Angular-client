@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-user-registration-form',
@@ -21,6 +22,7 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     FormsModule,
     CommonModule,
+    MatIconModule,
   ],
 })
 export class UserRegistrationFormComponent implements OnInit {

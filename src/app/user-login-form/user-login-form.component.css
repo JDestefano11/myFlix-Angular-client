@@ -4,11 +4,11 @@
   padding: 2rem;
   border-radius: 8px;
   background-color: #f5f5f7;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(11, 61, 145, 0.1);
 }
 
 .login-title {
-  color: #1c1c1e;
+  color: #0b3d91;
   font-size: 28px;
   font-weight: 700;
   text-align: center;
@@ -28,17 +28,17 @@
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #1c1c1e;
+  color: #0b3d91;
 }
 
 ::ng-deep
   .mat-form-field-appearance-outline.mat-focused
   .mat-form-field-outline-thick {
-  color: #0d98ba;
+  color: #ff69b4;
 }
 
 ::ng-deep .mat-icon {
-  color: #ffd700;
+  color: #8a2be2;
 }
 
 .login-button {
@@ -48,7 +48,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  background-color: #0d98ba;
+  background-color: #ff69b4;
   color: #f5f5f7;
   border: none;
   border-radius: 4px;
@@ -57,8 +57,8 @@
 }
 
 .login-button:hover {
-  background-color: #0b7a95;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: #ff1493;
+  box-shadow: 0 6px 12px rgba(255, 105, 180, 0.2);
 }
 
 .error-message {
@@ -68,7 +68,7 @@
 }
 
 .success-message {
-  color: #32cd32;
+  color: #00ff7f;
   font-size: 14px;
   margin-top: 1rem;
 }

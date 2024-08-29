@@ -1,9 +1,9 @@
-$primary-color: #2c2c2c;
-$secondary-color: #00a8e8;
-$accent-color: #ffc300;
-$background-color: #f2f2f2;
-$error-color: #ff4500;
-$success-color: #00ff7f;
+$primary-color: #1c1c1e;
+$secondary-color: #ffd700;
+$accent-color: #0d98ba;
+$background-color: #f5f5f7;
+$error-color: #ff6347;
+$success-color: #32cd32;
 
 .registration-card {
   max-width: 400px;
@@ -40,7 +40,7 @@ $success-color: #00ff7f;
   }
 
   .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: $secondary-color;
+    color: $accent-color;
   }
 
   .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid
@@ -68,13 +68,13 @@ $success-color: #00ff7f;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-color: $secondary-color;
+  background-color: $accent-color;
   color: $background-color;
   border-radius: 4px;
   transition: all 0.3s ease;
 
   &:hover:not([disabled]) {
-    background-color: darken($secondary-color, 10%);
+    background-color: darken($accent-color, 10%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
@@ -90,9 +90,15 @@ mat-error {
   margin-top: 4px;
 }
 
-// Add a cinematic touch
+.success-message {
+  color: $success-color;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .registration-card::before {
-  content: "🎬";
   font-size: 48px;
   position: absolute;
   top: -24px;

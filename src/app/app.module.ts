@@ -10,19 +10,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
-import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-import { MovieCardComponent } from './movie-card/movie-card.component';
-import { routes } from './app.routes';
 
 @NgModule({
-  declarations: [
-    UserRegistrationFormComponent,
-    WelcomePageComponent,
-    MovieCardComponent,
-  ],
+  declarations: [UserRegistrationFormComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -35,7 +28,6 @@ import { routes } from './app.routes';
     MatFormFieldModule,
     MatDialogModule,
     MatSnackBarModule,
-    RouterModule.forRoot(routes),
     AppComponent,
   ],
   providers: [],

@@ -1,1 +1,15 @@
-<p>movie-card works!</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+    <mat-card *ngFor="let movie of movies;" style="flex: 0 1 calc(25% - 20px); margin: 10px; max-width: 300px;">
+        <mat-card-header>
+            <mat-card-title>{{movie.Title}}</mat-card-title>
+            <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="movie.ImagePath" alt="{{movie.Title}}">
+        <mat-card-content>
+            <p>{{movie.Description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button color="primary" (click)="addToFavorites(movie._id)">Add to Favorites</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

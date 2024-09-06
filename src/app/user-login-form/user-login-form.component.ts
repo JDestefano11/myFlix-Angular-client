@@ -1,14 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { UserRegistrationService } from '../fetch-api-data.service';
+import { FetchApiDataService } from '../fetch.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-user-login-form',
@@ -16,19 +15,18 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./user-login-form.component.scss'],
   standalone: true,
   imports: [
-    MatCardModule,
+    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    FormsModule,
-    MatIconModule,
+    MatCardModule,
   ],
 })
 export class UserLoginFormComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '' };
+  userData = { Username: '', Password: '' };
 
   constructor(
-    public fetchApiData: UserRegistrationService,
+    public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
     public snackBar: MatSnackBar,
     private router: Router
@@ -47,8 +45,8 @@ export class UserLoginFormComponent implements OnInit {
         });
         this.router.navigate(['movies']);
       },
-      (result) => {
-        this.snackBar.open(result, 'OK', {
+      (error) => {
+        this.snackBar.open(error, 'OK', {
           duration: 2000,
         });
       }

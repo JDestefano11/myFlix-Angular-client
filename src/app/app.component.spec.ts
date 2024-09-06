@@ -14,16 +14,18 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'myFlix-Angular-client' title`, () => {
+  it(`should have the 'myHubx-Angular-client' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('myFlix-Angular-client');
+    expect(app.title).toEqual('myHubx-Angular-client');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, myFlix-Angular-client');
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Hello, myHubx-Angular-client'
+    );
   });
 });

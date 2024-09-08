@@ -1,9 +1,10 @@
-<mat-toolbar color="primary" *ngIf="!isWelcomePage">
-    <span>CineGalaxy</span>
+<mat-toolbar style="background-color: #0b3d91; color: #f5f5f7;" *ngIf="!isWelcomePage">
+    <span style="color: #ff69b4;">CineGalaxy</span>
     <span class="spacer"></span>
     <app-search-bar *ngIf="isLoggedIn" (search)="onSearch($event)"></app-search-bar>
     <ng-container *ngIf="isLoggedIn">
-        <button mat-button routerLink="/profile">Profile</button>
-        <button mat-button (click)="logout()">Logout</button>
+        <button mat-button routerLink="/movies" style="color: #f5f5f7;">Movies</button>
+        <button mat-button routerLink="/profile" style="color: #f5f5f7;">Profile</button>
+        <button mat-button (click)="logout()" style="color: #ff6347;">Logout</button>
     </ng-container>
 </mat-toolbar>

@@ -22,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
   styles: [
     `
       mat-form-field {
-        width: 300px;
+        width: 250px;
       }
     `,
   ],

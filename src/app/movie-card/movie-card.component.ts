@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movie-card',
@@ -15,22 +16,38 @@ import { CommonModule } from '@angular/common';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  filteredMovies: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.getMovies();
+    this.route.queryParams.subscribe((params) => {
+      const searchTerm = params['search'];
+      if (searchTerm) {
+        this.filterMovies(searchTerm);
+      } else {
+        this.filteredMovies = this.movies;
+      }
+    });
   }
 
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
+      this.filteredMovies = resp;
     });
+  }
+
+  filterMovies(searchTerm: string): void {
+    this.filteredMovies = this.movies.filter((movie) =>
+      movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   }
 
   addToFavorites(movieId: string): void {

@@ -5,13 +5,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, NgIf, RouterLink, MatIconModule],
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    NgIf,
+    RouterLink,
+    MatIconModule,
+    MatMenuModule,
+  ],
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
@@ -35,10 +43,5 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token');
     this.isLoggedIn = false;
     this.router.navigate(['/welcome']);
-  }
-
-  onSearch(searchTerm: string): void {
-    // Navigate to movies page with search term
-    this.router.navigate(['/movies'], { queryParams: { search: searchTerm } });
   }
 }

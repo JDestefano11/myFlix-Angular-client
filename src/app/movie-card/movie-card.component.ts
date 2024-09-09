@@ -6,17 +6,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss'],
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule],
+  imports: [MatCardModule, MatButtonModule, CommonModule, MatIconModule],
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
   filteredMovies: any[] = [];
+  favoriteMovies: Set<string> = new Set();
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -53,6 +55,7 @@ export class MovieCardComponent implements OnInit {
   addToFavorites(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe(
       () => {
+        this.favoriteMovies.add(movieId);
         this.snackBar.open('Movie added to favorites', 'OK', {
           duration: 2000,
         });
@@ -63,5 +66,9 @@ export class MovieCardComponent implements OnInit {
         });
       }
     );
+  }
+
+  isFavorite(movieId: string): boolean {
+    return this.favoriteMovies.has(movieId);
   }
 }

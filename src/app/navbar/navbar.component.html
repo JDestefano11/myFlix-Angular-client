@@ -1,10 +1,21 @@
-<mat-toolbar style="background-color: #0b3d91; color: #f5f5f7;" *ngIf="!isWelcomePage">
-    <span style="color: #ff69b4;">CineGalaxy</span>
-    <span class="spacer"></span>
-    <app-search-bar *ngIf="isLoggedIn" (search)="onSearch($event)"></app-search-bar>
-    <ng-container *ngIf="isLoggedIn">
-        <button mat-button routerLink="/movies" style="color: #f5f5f7;">Movies</button>
-        <button mat-button routerLink="/profile" style="color: #f5f5f7;">Profile</button>
-        <button mat-button (click)="logout()" style="color: #ff6347;">Logout</button>
-    </ng-container>
+<mat-toolbar class="galaxy-navbar" *ngIf="!isWelcomePage">
+    <div class="navbar-left">
+        <span class="logo">CineGalaxy</span>
+    </div>
+    <div class="navbar-right">
+        <ng-container *ngIf="isLoggedIn">
+            <button mat-button class="nav-button" routerLink="/movies">
+                <mat-icon>movie</mat-icon>
+                Movies
+            </button>
+            <button mat-button class="nav-button" routerLink="/profile">
+                <mat-icon>account_circle</mat-icon>
+                Profile
+            </button>
+            <button mat-button class="nav-button" (click)="logout()">
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+            </button>
+        </ng-container>
+    </div>
 </mat-toolbar>

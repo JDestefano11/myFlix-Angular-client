@@ -7,13 +7,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router'; // Import RouterModule
 
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss'],
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, CommonModule, MatIconModule],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    CommonModule,
+    MatIconModule,
+    RouterModule,
+  ],
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];

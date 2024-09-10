@@ -1,7 +1,7 @@
 <div class="movie-card-container">
     <mat-card *ngFor="let movie of filteredMovies" class="movie-card">
         <img mat-card-image [src]="movie.ImageUrl || 'default-image-url.png'" alt="{{ movie.Title }}"
-            class="movie-card-image">
+            class="movie-card-image" [routerLink]="['/movies', movie.Title]">
         <mat-card-content class="movie-card-content">
             <div class="movie-card-header">
                 <h2 class="movie-title">{{ movie.Title }}</h2>

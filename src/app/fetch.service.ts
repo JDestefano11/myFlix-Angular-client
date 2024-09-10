@@ -52,11 +52,11 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  // Get one movie
+  // Get one movie by title
   public getOneMovie(title: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'movies/' + title, {
+      .get(apiUrl + 'movies/' + encodeURIComponent(title), {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),

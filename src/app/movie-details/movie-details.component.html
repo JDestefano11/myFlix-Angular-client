@@ -1,0 +1,20 @@
+<div *ngIf="movie">
+    <h1>{{ movie.Title }}</h1>
+    <img [src]="movie.ImageUrl || 'default-image-url.png'" alt="{{ movie.Title }}">
+    <p><strong>Description:</strong> {{ movie.Description }}</p>
+    <p><strong>Year:</strong> {{ movie.Year }}</p>
+    <p><strong>Rating:</strong> {{ movie.Rating }}</p>
+    <div *ngIf="movie.Genre">
+        <h2>Genre</h2>
+        <p><strong>Name:</strong> {{ movie.Genre.Name }}</p>
+        <p><strong>Description:</strong> {{ movie.Genre.Description }}</p>
+    </div>
+    <div *ngIf="movie.Director">
+        <h2>Director</h2>
+        <p><strong>Name:</strong> {{ movie.Director.Name }}</p>
+        <p><strong>Occupation:</strong> {{ movie.Director.Occupation }}</p>
+        <p><strong>Birth Date:</strong> {{ movie.Director.BirthDate }}</p>
+        <p><strong>Birth Place:</strong> {{ movie.Director.BirthPlace }}</p>
+        <p><strong>Bio:</strong> {{ movie.Director.Bio }}</p>
+    </div>
+</div>

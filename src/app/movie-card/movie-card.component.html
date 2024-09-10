@@ -12,8 +12,10 @@
             <p><strong>Genre:</strong> {{ movie.Genre.Name }}</p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-icon-button color="warn" (click)="addToFavorites(movie._id)">
-                <mat-icon>{{ isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+            <button mat-icon-button color="warn" (click)="toggleFavorite(movie._id)">
+                <mat-icon [ngClass]="{'favorite': isFavorite(movie._id)}">
+                    {{ isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}
+                </mat-icon>
             </button>
         </mat-card-actions>
     </mat-card>

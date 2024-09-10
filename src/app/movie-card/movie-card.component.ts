@@ -51,7 +51,7 @@ export class MovieCardComponent implements OnInit {
       movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
-
+  // Add movie to favoirtes list
   addToFavorites(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe(
       () => {
@@ -67,8 +67,33 @@ export class MovieCardComponent implements OnInit {
       }
     );
   }
+  // Remove movie from favorites list
+  removeFromFavorites(movieId: string): void {
+    this.fetchApiData.removeFavoriteMovie(movieId).subscribe(
+      () => {
+        this.favoriteMovies.delete(movieId);
+        this.snackBar.open('Movie removed from favorites', 'OK', {
+          duration: 2000,
+        });
+      },
+      (error) => {
+        this.snackBar.open(error, 'OK', {
+          duration: 2000,
+        });
+      }
+    );
+  }
 
   isFavorite(movieId: string): boolean {
     return this.favoriteMovies.has(movieId);
+  }
+
+  // Toggle for add and remove favorite movie
+  toggleFavorite(movieId: string): void {
+    if (this.isFavorite(movieId)) {
+      this.removeFromFavorites(movieId);
+    } else {
+      this.addToFavorites(movieId);
+    }
   }
 }

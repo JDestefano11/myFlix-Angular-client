@@ -23,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class ProfileComponent implements OnInit {
   userData = { Username: '', Email: '', Birthday: '' };
+  newUsername = ''; // Property to store the new username
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -36,30 +37,49 @@ export class ProfileComponent implements OnInit {
 
   loadUserData(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    this.userData.Username = user.username;
-    this.userData.Email = user.email;
-    this.userData.Birthday = user.birthday;
+    if (user) {
+      this.userData.Username = user.username || '';
+      this.userData.Email = user.email || '';
+      this.userData.Birthday = user.birthday || '';
+    }
   }
 
-  updateUser(): void {
-    this.fetchApiData.updateUser(this.userData).subscribe(
+  updateUsername(): void {
+    if (!this.newUsername || !/^[a-zA-Z0-9]+$/.test(this.newUsername)) {
+      this.snackBar.open(
+        'Invalid username. It must be alphanumeric and at least 5 characters long.',
+        'OK',
+        {
+          duration: 3000,
+        }
+      );
+      return;
+    }
+
+    this.fetchApiData.updateUser({ newUsername: this.newUsername }).subscribe(
       (result) => {
-        localStorage.setItem('user', JSON.stringify(result));
-        this.snackBar.open('User updated successfully!', 'OK', {
+        localStorage.setItem('user', JSON.stringify(result.user));
+        this.userData.Username = this.newUsername; // Update the local username display
+        this.snackBar.open('Username updated successfully!', 'OK', {
           duration: 2000,
         });
+        this.newUsername = ''; // Reset the newUsername property
       },
       (error) => {
-        this.snackBar.open(error, 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          'Failed to update username. Please try again.',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       }
     );
   }
 
   deleteUser(): void {
     this.fetchApiData.deleteUser().subscribe(
-      (result) => {
+      () => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         this.snackBar.open('User deleted successfully!', 'OK', {
@@ -68,9 +88,13 @@ export class ProfileComponent implements OnInit {
         this.router.navigate(['/welcome']);
       },
       (error) => {
-        this.snackBar.open(error, 'OK', {
-          duration: 2000,
-        });
+        this.snackBar.open(
+          'Failed to delete account. Please try again.',
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
       }
     );
   }

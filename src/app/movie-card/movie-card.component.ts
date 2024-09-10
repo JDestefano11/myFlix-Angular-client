@@ -29,6 +29,7 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    this.loadFavoriteMovies();
     this.route.queryParams.subscribe((params) => {
       const searchTerm = params['search'];
       if (searchTerm) {
@@ -46,49 +47,46 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  loadFavoriteMovies(): void {
+    const storedFavorites = localStorage.getItem('favoriteMovies');
+    if (storedFavorites) {
+      this.favoriteMovies = new Set(JSON.parse(storedFavorites));
+    }
+  }
+
+  saveFavoriteMovies(): void {
+    localStorage.setItem(
+      'favoriteMovies',
+      JSON.stringify(Array.from(this.favoriteMovies))
+    );
+  }
+
   filterMovies(searchTerm: string): void {
     this.filteredMovies = this.movies.filter((movie) =>
       movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
-  // Add movie to favoirtes list
+
   addToFavorites(movieId: string): void {
-    this.fetchApiData.addFavoriteMovie(movieId).subscribe(
-      () => {
-        this.favoriteMovies.add(movieId);
-        this.snackBar.open('Movie added to favorites', 'OK', {
-          duration: 2000,
-        });
-      },
-      (error) => {
-        this.snackBar.open(error, 'OK', {
-          duration: 2000,
-        });
-      }
-    );
+    this.favoriteMovies.add(movieId);
+    this.saveFavoriteMovies();
+    this.snackBar.open('Movie added to favorites', 'OK', {
+      duration: 2000,
+    });
   }
-  // Remove movie from favorites list
+
   removeFromFavorites(movieId: string): void {
-    this.fetchApiData.removeFavoriteMovie(movieId).subscribe(
-      () => {
-        this.favoriteMovies.delete(movieId);
-        this.snackBar.open('Movie removed from favorites', 'OK', {
-          duration: 2000,
-        });
-      },
-      (error) => {
-        this.snackBar.open(error, 'OK', {
-          duration: 2000,
-        });
-      }
-    );
+    this.favoriteMovies.delete(movieId);
+    this.saveFavoriteMovies();
+    this.snackBar.open('Movie removed from favorites', 'OK', {
+      duration: 2000,
+    });
   }
 
   isFavorite(movieId: string): boolean {
     return this.favoriteMovies.has(movieId);
   }
 
-  // Toggle for add and remove favorite movie
   toggleFavorite(movieId: string): void {
     if (this.isFavorite(movieId)) {
       this.removeFromFavorites(movieId);

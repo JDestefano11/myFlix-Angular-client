@@ -1,32 +1,26 @@
 <mat-card *ngIf="movie" class="movie-details-card">
-    <mat-card-content>
-        <div class="movie-details-container">
-            <div class="movie-text-content">
-                <h1 class="movie-title">{{ movie.Title }}</h1>
-                <p><strong>Description:</strong> {{ movie.Description }}</p>
-                <div *ngIf="movie.Genre">
-                    <h2>Genre</h2>
-                    <p><strong>Name:</strong> {{ movie.Genre.Name }}</p>
-                    <p><strong>Description:</strong> {{ movie.Genre.Description }}</p>
-                </div>
-                <div *ngIf="movie.Director">
-                    <h2>Director</h2>
-                    <p><strong>Name:</strong> {{ movie.Director.Name }}</p>
-                    <p><strong>Occupation:</strong> {{ movie.Director.Occupation }}</p>
-                    <p><strong>Birth Date:</strong> {{ movie.Director.BirthDate }}</p>
-                    <p><strong>Birth Place:</strong> {{ movie.Director.BirthPlace }}</p>
-                    <p><strong>Bio:</strong> {{ movie.Director.Bio }}</p>
-                    <mat-card-actions>
-                        <button mat-button color="primary" (click)="goBack()" class="back-button">Back to
-                            Movies</button>
-                    </mat-card-actions>
-
-                </div>
+    <mat-card-header>
+        <mat-card-title>{{ movie.Title }}</mat-card-title>
+    </mat-card-header>
+    <div class="movie-details-content">
+        <img mat-card-image [src]="movie.ImageUrl || 'default-image-url.png'" alt="{{ movie.Title }}"
+            class="movie-image">
+        <div class="movie-text-content">
+            <p><strong>Description:</strong> {{ movie.Description }}</p>
+            <div *ngIf="movie.Genre">
+                <h2>Genre</h2>
+                <p><strong>Name:</strong> {{ movie.Genre.Name }}</p>
+                <p><strong>Description:</strong> {{ movie.Genre.Description }}</p>
             </div>
-            <div class="movie-image-container">
-                <img mat-card-image [src]="movie.ImageUrl || 'default-image-url.png'" alt="{{ movie.Title }}"
-                    class="movie-image">
+            <div *ngIf="movie.Director">
+                <h2>Director</h2>
+                <p><strong>Name:</strong> {{ movie.Director.Name }}</p>
+                <p><strong>Occupation:</strong> {{ movie.Director.Occupation }}</p>
+                <p><strong>Birth Date:</strong> {{ movie.Director.BirthDate }}</p>
+                <p><strong>Birth Place:</strong> {{ movie.Director.BirthPlace }}</p>
+                <p><strong>Bio:</strong> {{ movie.Director.Bio }}</p>
             </div>
+            <button mat-button color="primary" class="back-button" (click)="goBack()">Back to Movies</button>
         </div>
-    </mat-card-content>
+    </div>
 </mat-card>

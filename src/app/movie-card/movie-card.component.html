@@ -1,15 +1,16 @@
 <div class="movie-card-container">
     <mat-card *ngFor="let movie of filteredMovies" class="movie-card">
-        <mat-card-header>
-            <mat-card-title>{{ movie.Title }}</mat-card-title>
-            <mat-card-subtitle>Directed by: {{ movie.Director.Name }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image [src]="movie.ImageUrl || 'default-image-url.png'" alt="{{ movie.Title }}">
-        <mat-card-content>
-            <p>{{ movie.Description }}</p>
-            <p><strong>Year:</strong> {{ movie.Year }}</p>
-            <p><strong>Rating:</strong> {{ movie.Rating }}</p>
-            <p><strong>Genre:</strong> {{ movie.Genre.Name }}</p>
+        <img mat-card-image [src]="movie.ImageUrl || 'default-image-url.png'" alt="{{ movie.Title }}"
+            class="movie-card-image">
+        <mat-card-content class="movie-card-content">
+            <div class="movie-card-header">
+                <h2 class="movie-title">{{ movie.Title }}</h2>
+            </div>
+            <div class="movie-details">
+                <p><strong>Year:</strong> {{ movie.Year }}</p>
+                <p><strong>Rating:</strong> {{ movie.Rating }}</p>
+                <p><strong>Genre:</strong> {{ movie.Genre.Name }}</p>
+            </div>
         </mat-card-content>
         <mat-card-actions>
             <button mat-icon-button color="warn" (click)="toggleFavorite(movie._id)">

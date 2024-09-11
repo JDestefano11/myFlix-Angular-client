@@ -77,25 +77,21 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  deleteUser(): void {
-    this.fetchApiData.deleteUser().subscribe(
-      () => {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        this.snackBar.open('User deleted successfully!', 'OK', {
-          duration: 2000,
-        });
-        this.router.navigate(['/welcome']);
-      },
-      (error) => {
-        this.snackBar.open(
-          'Failed to delete account. Please try again.',
-          'OK',
-          {
-            duration: 2000,
-          }
-        );
-      }
-    );
+  // Method to delete the user
+  deleteUser() {
+    if (confirm('Are you sure you want to delete your account?')) {
+      const username = this.userData.Username; // Assuming you have the username stored in userData
+      this.fetchApiData.deleteUser(username).subscribe({
+        next: (response: any) => {
+          alert(response.message);
+
+          this.router.navigate(['/welcome']);
+        },
+        error: (err: any) => {
+          alert('Failed to delete the account. Please try again.');
+          console.error('Error deleting user:', err);
+        },
+      });
+    }
   }
 }

@@ -118,8 +118,6 @@ export class FetchApiDataService {
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
   // Update username
-  // Update user
-  // Update user
   public updateUser(updatedUser: any): Observable<any> {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const username = user.username;
@@ -132,10 +130,8 @@ export class FetchApiDataService {
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
-
-  // Delete a user
-  public deleteUser(): Observable<any> {
-    const username = localStorage.getItem('user');
+  // Delete user
+  public deleteUser(username: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
       .delete(apiUrl + 'users/' + username, {
@@ -143,9 +139,8 @@ export class FetchApiDataService {
           Authorization: 'Bearer ' + token,
         }),
       })
-      .pipe(map(this.extractResponseData), catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
-
   // Get movie of the day
   public getMovieOfTheDay(): Observable<any> {
     const token = localStorage.getItem('token');

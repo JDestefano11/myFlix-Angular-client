@@ -1,0 +1,14 @@
+{
+  "out": "docs",
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"],
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "mode": "file",
+  "name": "My Angular Project",
+  "theme": "default",
+  "scripts": {
+  "docs": "typedoc"
+}
+
+}

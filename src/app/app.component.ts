@@ -4,6 +4,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
+/**
+ * The root component of the application.
+ */
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,8 +17,11 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
     MovieDetailsComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'myFlix-Angular-client';
+  /**
+   * The title of the application.
+   */
+  title = 'myHubx-Angular-client';
 }

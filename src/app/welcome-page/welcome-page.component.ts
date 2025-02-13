@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
-import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
+import { UserLoginFormComponent } from '../user-login-form/user-login-form.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 /**
  * The WelcomePageComponent is the entry point of the application.
@@ -11,28 +12,28 @@ import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.scss'],
+  styleUrls: ['./welcome-page.component.css'],
   standalone: true,
-  imports: [MatButtonModule],
+  imports: [
+    MatButtonModule,
+    MatIconModule
+  ]
 })
-export class WelcomePageComponent implements OnInit {
+export class WelcomePageComponent {
   /**
    * Constructor for WelcomePageComponent.
    * @param dialog - The MatDialog service for opening dialogs.
    */
-  constructor(public dialog: MatDialog) {}
-
-  /**
-   * Lifecycle hook that is called after data-bound properties of a directive are initialized.
-   */
-  ngOnInit(): void {}
+  constructor(public dialog: MatDialog) { }
 
   /**
    * Opens the user registration dialog.
    */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
-      width: '450px',
+      width: '400px',
+      maxWidth: '90vw',
+      panelClass: 'custom-dialog'
     });
   }
 
@@ -41,7 +42,9 @@ export class WelcomePageComponent implements OnInit {
    */
   openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
-      width: '450px',
+      width: '400px',
+      maxWidth: '90vw',
+      panelClass: 'custom-dialog'
     });
   }
 }

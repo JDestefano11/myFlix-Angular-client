@@ -1,14 +1,72 @@
 <div class="welcome-container">
-    <div class="welcome-content">
-        <h1 class="welcome-title">Welcome to CineGalaxy</h1>
-        <p class="welcome-subtitle">Your ultimate movie companion</p>
-        <div class="button-group">
-            <button mat-raised-button color="primary" (click)="openUserRegistrationDialog()">
-                Sign Up
-            </button>
-            <button mat-raised-button color="accent" (click)="openUserLoginDialog()">
-                Login
-            </button>
+    <div class="hero-container">
+        <!-- Cinematic Background Elements -->
+        <div class="cinema-overlay"></div>
+        <div class="floating-films">
+            <div class="film-poster poster1"></div>
+            <div class="film-poster poster2"></div>
+            <div class="film-poster poster3"></div>
         </div>
+        
+        <!-- Animated Spotlights -->
+        <div class="spotlight-container">
+            <div class="spotlight spot1"></div>
+            <div class="spotlight spot2"></div>
+            <div class="spotlight spot3"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="hero-content">
+            <div class="brand-logo">
+                <mat-icon class="movie-icon">local_movies</mat-icon>
+                <div class="brand-text">
+                    <h1 class="glowing-text">CineGalaxy</h1>
+                    <p class="tagline">Where Every Frame Tells a Story</p>
+                </div>
+            </div>
+
+            <!-- Feature Highlights -->
+            <div class="feature-highlights">
+                <div class="feature">
+                    <mat-icon>movie</mat-icon>
+                    <span>Unlimited Movies</span>
+                </div>
+                <div class="feature">
+                    <mat-icon>hd</mat-icon>
+                    <span>HD Quality</span>
+                </div>
+                <div class="feature">
+                    <mat-icon>devices</mat-icon>
+                    <span>Watch Anywhere</span>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="cta-section">
+                <button mat-raised-button (click)="openUserRegistrationDialog()" class="cta-button signup-btn">
+                    <mat-icon>person_add</mat-icon>
+                    Start Your Journey
+                </button>
+                <button mat-raised-button (click)="openUserLoginDialog()" class="cta-button login-btn">
+                    <mat-icon>login</mat-icon>
+                    Welcome Back
+                </button>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="decorative-elements">
+            <div class="film-reel reel1"></div>
+            <div class="film-reel reel2"></div>
+            <div class="floating-element elem1">🎬</div>
+            <div class="floating-element elem2">🎥</div>
+            <div class="floating-element elem3">🎭</div>
+        </div>
+    </div>
+    <div class="background-elements">
+        <div class="spotlight spotlight-1"></div>
+        <div class="spotlight spotlight-2"></div>
+        <div class="spotlight spotlight-3"></div>
+        <div class="spotlight spotlight-4"></div>
     </div>
 </div>

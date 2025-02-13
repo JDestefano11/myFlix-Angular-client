@@ -29,19 +29,28 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.isWelcomePage = event.url === '/welcome';
-        this.isLoggedIn = !!localStorage.getItem('token');
+        // Safely check localStorage
+        if (typeof window !== 'undefined') {
+          this.isLoggedIn = !!localStorage.getItem('token');
+        }
       }
     });
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!localStorage.getItem('token');
+    // Safely check localStorage
+    if (typeof window !== 'undefined') {
+      this.isLoggedIn = !!localStorage.getItem('token');
+    }
   }
 
   logout(): void {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    this.isLoggedIn = false;
-    this.router.navigate(['/welcome']);
+    // Safely use localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      this.isLoggedIn = false;
+      this.router.navigate(['/welcome']);
+    }
   }
 }
